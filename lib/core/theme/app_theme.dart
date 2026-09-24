@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// Canonical app theme.
+/// Music-hub visual theme.
 ///
-/// Use [AppTheme] in new code. The [Default_Theme] typedef at the bottom of
-/// this file provides backward-compatible access for existing callers while
-/// imports are being migrated.
+/// Light mode: White Smoke surfaces with Sage Green accents.
+/// Dark mode: Rich Off-Black surfaces with Sage Green accents.
 class AppTheme {
   // ── Text Styles ─────────────────────────────────────────────────────────────
   static const primaryTextStyle = TextStyle(fontFamily: "Fjalla");
@@ -17,111 +16,175 @@ class AppTheme {
   static const fontAwesomeSolidFont =
       TextStyle(fontFamily: "FontAwesome-Solids");
 
-  // ── Colors ──────────────────────────────────────────────────────────────────
-  static const themeColor = Color(0xFF0A040C);
-  static const primaryColor1 = Color(0xFFDAEAF7);
-  static const primaryColor2 = Color.fromARGB(255, 242, 231, 240);
-  static const accentColor1 = Color(0xFF0EA5E0);
-  static const accentColor1light = Color(0xFF18C9ED);
-  static const accentColor2 = Color(0xFFFE385E);
-  static const successColor = Color(0xFF5EFF43);
+  // ── Music-hub Palette ───────────────────────────────────────────────────────
+  static const whiteSmoke = Color(0xFFF5F5F3);
+  static const richOffBlack = Color(0xFF10110F);
 
-  // ── Theme Data ───────────────────────────────────────────────────────────────
-  ThemeData get defaultThemeData {
-    const darkScheme = ColorScheme.dark(
-      primary: accentColor2,
-      secondary: accentColor1,
-      surface: themeColor,
-      surfaceContainerHighest: Color(0xFF1A111B),
-      onPrimary: primaryColor1,
-      onSecondary: primaryColor1,
-      onSurface: primaryColor1,
+  static const sage = Color(0xFF9CAF88);
+  static const sageLight = Color(0xFFAFC19C);
+  static const sageDark = Color(0xFF6F805F);
+
+  static const lightText = Color(0xFF252923);
+  static const darkText = Color(0xFFF1F3EE);
+
+  // Backward-compatible names used throughout the existing UI.
+  static const themeColor = richOffBlack;
+  static const primaryColor1 = darkText;
+  static const primaryColor2 = Color(0xFFE3E8DF);
+  static const accentColor1 = sageLight;
+  static const accentColor1light = sageLight;
+  static const accentColor2 = sage;
+  static const successColor = sage;
+
+  ThemeData get lightThemeData {
+    const scheme = ColorScheme.light(
+      primary: sageDark,
+      secondary: sage,
+      surface: whiteSmoke,
+      surfaceContainerHighest: Color(0xFFE8EBE5),
+      onPrimary: Colors.white,
+      onSecondary: lightText,
+      onSurface: lightText,
     );
 
     return ThemeData(
       useMaterial3: true,
-      scaffoldBackgroundColor: themeColor,
-      dialogBackgroundColor: themeColor,
-      primaryColorDark: accentColor2,
+      brightness: Brightness.light,
+      scaffoldBackgroundColor: whiteSmoke,
+      dialogBackgroundColor: whiteSmoke,
+      primaryColorDark: sageDark,
       fontFamily: 'Gilroy',
-      primarySwatch: MaterialColor(
-        accentColor2.value,
-        {
-          50: accentColor2.withValues(alpha: 0.1),
-          100: accentColor2.withValues(alpha: 0.2),
-          200: accentColor2.withValues(alpha: 0.3),
-          300: accentColor2.withValues(alpha: 0.4),
-          400: accentColor2.withValues(alpha: 0.5),
-          500: accentColor2.withValues(alpha: 0.6),
-          600: accentColor2.withValues(alpha: 0.7),
-          700: accentColor2.withValues(alpha: 0.8),
-          800: accentColor2.withValues(alpha: 0.9),
-          900: accentColor2,
-        },
+      colorScheme: scheme,
+      iconTheme: const IconThemeData(color: sageDark),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: whiteSmoke,
+        foregroundColor: lightText,
+        surfaceTintColor: Colors.transparent,
+        iconTheme: IconThemeData(color: lightText),
       ),
-      colorScheme: darkScheme.copyWith(
-        primary: accentColor2,
-        secondary: accentColor2,
+      progressIndicatorTheme:
+          const ProgressIndicatorThemeData(color: sageDark),
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: sageDark,
+        selectionColor: sage,
+        selectionHandleColor: sageDark,
       ),
-      iconTheme: const IconThemeData(color: primaryColor1),
       scrollbarTheme: ScrollbarThemeData(
-        thumbColor: WidgetStateProperty.all(accentColor2),
+        thumbColor: WidgetStateProperty.all(sage),
         interactive: true,
         radius: const Radius.circular(10),
         thickness: WidgetStateProperty.all(5),
       ),
-      appBarTheme: const AppBarTheme(
-        backgroundColor: themeColor,
-        foregroundColor: primaryColor1,
-        surfaceTintColor: themeColor,
-        iconTheme: IconThemeData(color: primaryColor1),
-      ),
-      progressIndicatorTheme:
-          const ProgressIndicatorThemeData(color: accentColor2),
-      textSelectionTheme: const TextSelectionThemeData(
-        cursorColor: accentColor2,
-        selectionColor: accentColor2,
-        selectionHandleColor: accentColor2,
-      ),
-      brightness: Brightness.dark,
       switchTheme: SwitchThemeData(
-        thumbColor: const WidgetStatePropertyAll(primaryColor1),
-        trackOutlineColor: WidgetStateProperty.resolveWith((states) =>
-            states.contains(WidgetState.selected)
-                ? accentColor1
-                : accentColor2),
+        thumbColor: const WidgetStatePropertyAll(whiteSmoke),
+        trackOutlineColor:
+            WidgetStateProperty.all(sageDark),
         trackColor: WidgetStateProperty.resolveWith((states) =>
             states.contains(WidgetState.selected)
-                ? accentColor1
-                : primaryColor2.withValues(alpha: 0.0)),
+                ? sage
+                : const Color(0xFFD8DDD4)),
       ),
       searchBarTheme: const SearchBarThemeData(
-        backgroundColor: WidgetStatePropertyAll(themeColor),
+        backgroundColor: WidgetStatePropertyAll(whiteSmoke),
       ),
       popupMenuTheme: const PopupMenuThemeData(
-        color: Color.fromARGB(255, 23, 18, 25),
-        textStyle: TextStyle(color: primaryColor1),
+        color: Color(0xFFE8EBE5),
+        textStyle: TextStyle(color: lightText),
       ),
       dropdownMenuTheme: const DropdownMenuThemeData(
         menuStyle: MenuStyle(
-          backgroundColor: WidgetStatePropertyAll(themeColor),
+          backgroundColor: WidgetStatePropertyAll(Color(0xFFE8EBE5)),
         ),
-        textStyle: TextStyle(color: primaryColor1),
+        textStyle: TextStyle(color: lightText),
       ),
       menuTheme: const MenuThemeData(
         style: MenuStyle(
-          backgroundColor: WidgetStatePropertyAll(themeColor),
+          backgroundColor: WidgetStatePropertyAll(Color(0xFFE8EBE5)),
         ),
       ),
       cardTheme: const CardThemeData(
-        color: themeColor,
+        color: whiteSmoke,
         surfaceTintColor: Colors.transparent,
       ),
     );
   }
+
+  ThemeData get darkThemeData {
+    const scheme = ColorScheme.dark(
+      primary: sage,
+      secondary: sageLight,
+      surface: richOffBlack,
+      surfaceContainerHighest: Color(0xFF1A1D19),
+      onPrimary: richOffBlack,
+      onSecondary: richOffBlack,
+      onSurface: darkText,
+    );
+
+    return ThemeData(
+      useMaterial3: true,
+      brightness: Brightness.dark,
+      scaffoldBackgroundColor: richOffBlack,
+      dialogBackgroundColor: richOffBlack,
+      primaryColorDark: sageDark,
+      fontFamily: 'Gilroy',
+      colorScheme: scheme,
+      iconTheme: const IconThemeData(color: darkText),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: richOffBlack,
+        foregroundColor: darkText,
+        surfaceTintColor: Colors.transparent,
+        iconTheme: IconThemeData(color: darkText),
+      ),
+      progressIndicatorTheme:
+          const ProgressIndicatorThemeData(color: sage),
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: sageLight,
+        selectionColor: sage,
+        selectionHandleColor: sage,
+      ),
+      scrollbarTheme: ScrollbarThemeData(
+        thumbColor: WidgetStateProperty.all(sage),
+        interactive: true,
+        radius: const Radius.circular(10),
+        thickness: WidgetStateProperty.all(5),
+      ),
+      switchTheme: SwitchThemeData(
+        thumbColor: const WidgetStatePropertyAll(darkText),
+        trackOutlineColor: WidgetStateProperty.all(sage),
+        trackColor: WidgetStateProperty.resolveWith((states) =>
+            states.contains(WidgetState.selected)
+                ? sage
+                : const Color(0xFF252A23)),
+      ),
+      searchBarTheme: const SearchBarThemeData(
+        backgroundColor: WidgetStatePropertyAll(richOffBlack),
+      ),
+      popupMenuTheme: const PopupMenuThemeData(
+        color: Color(0xFF1A1D19),
+        textStyle: TextStyle(color: darkText),
+      ),
+      dropdownMenuTheme: const DropdownMenuThemeData(
+        menuStyle: MenuStyle(
+          backgroundColor: WidgetStatePropertyAll(Color(0xFF1A1D19)),
+        ),
+        textStyle: TextStyle(color: darkText),
+      ),
+      menuTheme: const MenuThemeData(
+        style: MenuStyle(
+          backgroundColor: WidgetStatePropertyAll(Color(0xFF1A1D19)),
+        ),
+      ),
+      cardTheme: const CardThemeData(
+        color: richOffBlack,
+        surfaceTintColor: Colors.transparent,
+      ),
+    );
+  }
+
+  // Keep existing callers working.
+  ThemeData get defaultThemeData => darkThemeData;
 }
 
-/// Backward-compat alias for [AppTheme].
-/// Prefer importing from [core/theme/app_theme.dart] and using [AppTheme] directly.
+/// Backward-compatible alias used by the existing codebase.
 // ignore: camel_case_types
 typedef Default_Theme = AppTheme;
