@@ -8,11 +8,12 @@ import 'dart:math';
 
 // Color palette
 // Darken background slightly for higher contrast against foreground elements
-const Color kBackgroundColor = Color(0xFF0B0710);
-const Color kPrimaryTextColor = Colors.white;
-const Color kSecondaryTextColor = Color(0xFFC3B9CF);
-// Make the frosted card a bit less translucent so it reads clearer on darkbg
-const Color kCardBackgroundColor = Color.fromRGBO(40, 32, 50, 0.18);
+const Color kBackgroundColor = Color(0xFF10110F);
+const Color kPrimaryTextColor = Color(0xFFF1F3EE);
+const Color kSecondaryTextColor = Color(0xFFAEB7A7);
+const Color kSageColor = Color(0xFF9CAF88);
+const Color kSageLight = Color(0xFFAFC19C);
+const Color kCardBackgroundColor = Color.fromRGBO(26, 29, 25, 0.82);
 
 // Gradients
 const Gradient kTitleGradient = LinearGradient(
@@ -104,9 +105,12 @@ class About extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.fromLTRB(24, 32, 24, 28),
           decoration: BoxDecoration(
-            color: kCardBackgroundColor,
+            color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.88),
             borderRadius: BorderRadius.circular(28.0),
-            border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
+            border: Border.all(
+                color: Theme.of(context).colorScheme.outlineVariant
+                    .withValues(alpha: 0.45),
+              ),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -141,9 +145,9 @@ class About extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 'Your music. Your library. Your way.',
-                style: const TextStyle(
+                style: TextStyle(
                     fontSize: 16,
-                    color: kSecondaryTextColor,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     fontFamily: 'Gilroy'),
               ),
               const SizedBox(height: 35),
@@ -227,8 +231,10 @@ class About extends StatelessWidget {
           child: Text(
             'Have feedback or ideas? Contact will be available in a future update.',
             textAlign: TextAlign.center,
-            style: const TextStyle(
-                color: kSecondaryTextColor, fontSize: 14, fontFamily: 'Gilroy'),
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                fontSize: 14,
+                fontFamily: 'Gilroy'),
           ),
         ),
         const SizedBox(height: 12),
@@ -256,12 +262,12 @@ class About extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(Icons.mail_outline_rounded,
-                    color: kBackgroundColor, size: 20),
+                    color: Theme.of(context).colorScheme.onPrimary, size: 20),
                 SizedBox(width: 10),
                 Text(
                   'Contact',
                   style: TextStyle(
-                    color: kBackgroundColor,
+                    color: Theme.of(context).colorScheme.onPrimary,
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
                     fontFamily: 'Gilroy',
@@ -275,8 +281,10 @@ class About extends StatelessWidget {
         Text(
           'No public contact channel is enabled yet.',
           textAlign: TextAlign.center,
-          style: const TextStyle(
-              color: kSecondaryTextColor, fontSize: 14, fontFamily: 'Gilroy'),
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+              fontSize: 14,
+              fontFamily: 'Gilroy'),
         ),
       ],
     );
