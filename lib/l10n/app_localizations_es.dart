@@ -1629,7 +1629,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'No hay plugins importadores cargados.\nInstala uno para importar desde servicios externos.';
 
   @override
-  String get importBloomeeFiles => 'Importar archivos Bloomee';
+  String get importBloomeeFiles => 'Importar archivos de Music-hub';
 
   @override
   String get importM3UFiles => 'Importar lista M3U';
