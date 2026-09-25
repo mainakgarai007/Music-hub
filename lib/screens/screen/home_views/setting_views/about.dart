@@ -285,7 +285,7 @@ class About extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(MingCute.github_fill,
+                const Icon(Icons.music_note_rounded,
                     color: kSecondaryTextColor, size: 16),
                 const SizedBox(width: 8),
                 Text(
