@@ -65,9 +65,11 @@ Future<T?> showBloomeeDialog<T>({
 
 // ── Surface Colors ──────────────────────────────────────────────────────────
 
-const _kDialogBg = Color(0xFF12101A);
-const _kDialogSurface = Color(0xFF1A1626);
-const _kDialogBorder = Color(0xFF2A2438);
+Color _dialogBg(BuildContext context) => Theme.of(context).colorScheme.surface;
+Color _dialogSurface(BuildContext context) =>
+    Theme.of(context).colorScheme.surfaceContainerHighest;
+Color _dialogBorder(BuildContext context) =>
+    Theme.of(context).colorScheme.outlineVariant;
 
 /// The dialog surface widget. Can be used directly as a dialog builder return
 /// value for dialogs that manage their own state (e.g., Smart Replace).
@@ -102,9 +104,9 @@ class BloomeeDialogSurface extends StatelessWidget {
           child: Container(
             constraints: BoxConstraints(maxWidth: maxW),
             decoration: BoxDecoration(
-              color: _kDialogBg.withValues(alpha: 0.92),
+              color: _dialogBg(context).withValues(alpha: 0.94),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: _kDialogBorder, width: 1),
+              border: Border.all(color: _dialogBorder(context), width: 1),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withValues(alpha: 0.4),
@@ -283,12 +285,12 @@ class BloomeeDialogTile extends StatelessWidget {
           decoration: BoxDecoration(
             color: selected
                 ? Default_Theme.accentColor2.withValues(alpha: 0.08)
-                : _kDialogSurface.withValues(alpha: 0.6),
+                : _dialogSurface(context).withValues(alpha: 0.6),
             borderRadius: BorderRadius.circular(14),
             border: Border.all(
               color: selected
                   ? Default_Theme.accentColor2.withValues(alpha: 0.35)
-                  : _kDialogBorder.withValues(alpha: 0.5),
+                  : _dialogBorder(context).withValues(alpha: 0.5),
             ),
           ),
           child: Row(
