@@ -31,7 +31,7 @@ class GlobalEventsCubit extends Cubit<GlobalEventsState> {
         emit(UpdateAvailable(
           newVersion: updates["newVer"],
           newBuild: updates["newBuild"],
-          downloadUrl: "https://bloomee.sourceforge.io/",
+          downloadUrl: updates["download_url"] ?? "https://github.com/mainakgarai007/Music-hub/releases",
         ));
       }
     }
