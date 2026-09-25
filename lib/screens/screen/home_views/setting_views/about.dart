@@ -187,32 +187,16 @@ class About extends StatelessWidget {
                 runSpacing: 12.0, // Spacing when items wrap to the next line
                 spacing: 12.0, // Horizontal spacing
                 children: [
-                  // Maintainer opens GitHub account
+                  const _InfoPill(
+                    icon: Icons.music_note_rounded,
+                    text: 'Music-hub',
+                  ),
                   _InfoPill(
-                      icon: Icons.shield_outlined,
-                      text: 'Maintainer',
-                      tooltip: l10n.aboutFollowGitHub,
-                      onTap: () {
-                        launchUrl(Uri.parse('https://github.com/HemantKArya'),
-                            mode: LaunchMode.externalApplication);
-                      }),
-                  // Contact is intentionally disabled until a public contact
-                  // channel is configured for Music-hub.
-                  _InfoPill(
-                      icon: Icons.mail_outline_rounded,
-                      text: 'Contact',
-                      tooltip: 'Contact will be available in a future update.',
-                      onTap: null),
-                  // Short label 'Linkedin' opens Linkedin profile
-                  _InfoPill(
-                      icon: FontAwesome.linkedin_brand,
-                      text: 'Linkedin',
-                      tooltip: l10n.aboutCreativeHighlights,
-                      onTap: () {
-                        launchUrl(
-                            Uri.parse('https://linkedin.com/in/iamhemantindia'),
-                            mode: LaunchMode.externalApplication);
-                      }),
+                    icon: Icons.mail_outline_rounded,
+                    text: 'Contact',
+                    tooltip: 'Contact will be available in a future update.',
+                    onTap: null,
+                  ),
                 ],
               )
             ],
