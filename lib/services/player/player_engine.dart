@@ -154,7 +154,7 @@ class PlayerEngine {
   PlayerEngine() {
     _playerA = Player(
         configuration: const PlayerConfiguration(
-            title: 'BloomeeTunes', bufferSize: 16 * 1024 * 1024));
+            title: 'Music-hub', bufferSize: 16 * 1024 * 1024));
     _playerB = Player(
         configuration: const PlayerConfiguration(
             title: 'BloomeeTunes', bufferSize: 16 * 1024 * 1024));
