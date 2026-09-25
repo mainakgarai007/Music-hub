@@ -1530,7 +1530,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'インポータープラグインがありません。外部サービスから取り込むにはインストールしてください。';
 
   @override
-  String get importBloomeeFiles => 'Bloomee ファイルをインポート';
+  String get importBloomeeFiles => 'Music-hub ファイルをインポート';
 
   @override
   String get importM3UFiles => 'M3U プレイリストをインポート';
@@ -1548,7 +1548,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get importNoteTitle => '注記';
 
   @override
-  String get importNoteMessage => 'Bloomee で作成されたファイルのみが対象です。続行しますか？';
+  String get importNoteMessage => 'Music-hub のバックアップまたはプレイリストのエクスポートを選択してください。互換性のある JSON ファイルも他のソースからインポートできます。';
 
   @override
   String get importTitle => 'インポート';
