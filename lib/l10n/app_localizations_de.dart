@@ -1638,7 +1638,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Keine Importer-Plugins geladen.\nInstalliere ein Plugin, um Playlists externer Dienste zu importieren.';
 
   @override
-  String get importBloomeeFiles => 'Bloomee-Dateien importieren';
+  String get importBloomeeFiles => 'Music-hub-Dateien importieren';
 
   @override
   String get importM3UFiles => 'M3U-Playlist importieren';
@@ -1658,7 +1658,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get importNoteMessage =>
-      'Du kannst nur Dateien importieren, die von Bloomee erstellt wurden. Andere Dateien funktionieren nicht. Trotzdem fortfahren?';
+      'Wähle ein Music-hub-Backup oder einen Playlist-Export. Kompatible JSON-Dateien aus anderen Quellen können ebenfalls importiert werden.';
 
   @override
   String get importTitle => 'Import';
