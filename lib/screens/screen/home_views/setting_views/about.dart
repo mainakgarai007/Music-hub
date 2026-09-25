@@ -16,22 +16,22 @@ const Color kCardBackgroundColor = Color.fromRGBO(40, 32, 50, 0.18);
 
 // Gradients
 const Gradient kTitleGradient = LinearGradient(
-  colors: [Color(0xFFFEBD88), Color(0xFFF17C98)],
+  colors: [Color(0xFFAFC19C), Color(0xFF6F805F)],
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
 );
 const Gradient kButtonGradient = LinearGradient(
-  colors: [Color(0xFFFFB88C), Color(0xFFDE6262)],
+  colors: [Color(0xFFAFC19C), Color(0xFF6F805F)],
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
 );
 const Gradient kHandleGradient = LinearGradient(
-  colors: [Color(0xFFFFB88C), Color(0xFFF88A6B)],
+  colors: [Color(0xFFAFC19C), Color(0xFF6F805F)],
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
 );
 const Gradient kWaveformGradient = LinearGradient(
-  colors: [Color(0xFFE3729A), Color(0xFFF88A6B)],
+  colors: [Color(0xFFAFC19C), Color(0xFF6F805F)],
   begin: Alignment.centerLeft,
   end: Alignment.centerRight,
 );
@@ -43,7 +43,7 @@ class About extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -126,15 +126,13 @@ class About extends StatelessWidget {
                       spacing: 6,
                       children: [
                         Text(
-                          'BloomeeTunes',
+                          'Music-hub',
                           style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w800,
                             fontFamily: 'Gilroy',
                           ),
                         ),
-                        // Small animated flower
-                        GentleRotatingFlower(size: 28),
                       ],
                     ),
                   ),
@@ -142,7 +140,7 @@ class About extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                l10n.aboutCraftingSubtitle,
+                'Your music. Your library. Your way.',
                 style: const TextStyle(
                     fontSize: 16,
                     color: kSecondaryTextColor,
@@ -151,54 +149,32 @@ class About extends StatelessWidget {
               const SizedBox(height: 35),
               Container(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
                 decoration: BoxDecoration(
-                  color: Colors.black.withValues(alpha: 0.3),
-                  borderRadius: BorderRadius.circular(30),
+                  color: kSageColor.withValues(alpha: 0.10),
+                  borderRadius: BorderRadius.circular(18),
+                  border: Border.all(
+                    color: kSageColor.withValues(alpha: 0.22),
+                  ),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: kHandleGradient,
-                        boxShadow: [
-                          BoxShadow(
-                            color:
-                                const Color(0xFFF88A6B).withValues(alpha: 0.5),
-                            blurRadius: 10,
-                          ),
-                        ],
-                      ),
-                      child: const CircleAvatar(
-                          backgroundColor: Colors.transparent, radius: 10),
-                    ),
-                    const SizedBox(width: 12),
-                    Flexible(
-                      child: Text(
-                        '@iamhemantindia',
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: kPrimaryTextColor,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          fontFamily: 'Gilroy',
-                          shadows: [
-                            Shadow(
-                              color: const Color.fromARGB(255, 255, 246, 238)
-                                  .withValues(alpha: 0.4),
-                              blurRadius: 12,
-                              offset: Offset(0, 0),
-                            ),
-                          ],
-                        ),
+                    Icon(Icons.music_note_rounded, color: kSageLight, size: 20),
+                    SizedBox(width: 10),
+                    Text(
+                      'Open-source music player',
+                      style: TextStyle(
+                        color: kPrimaryTextColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                        fontFamily: 'Gilroy',
                       ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 35),
+              const SizedBox(height: 28),
               // Use Wrap to prevent overflow on small screens; center wrapped items
               Wrap(
                 alignment: WrapAlignment.center,
@@ -216,17 +192,13 @@ class About extends StatelessWidget {
                         launchUrl(Uri.parse('https://github.com/HemantKArya'),
                             mode: LaunchMode.externalApplication);
                       }),
-                  // Short label 'Email' opens mail composer
+                  // Contact is intentionally disabled until a public contact
+                  // channel is configured for Music-hub.
                   _InfoPill(
-                      icon: FontAwesome.x_twitter_brand,
+                      icon: Icons.mail_outline_rounded,
                       text: 'Contact',
-                      tooltip: l10n.aboutSendInquiry,
-                      onTap: () {
-                        launchUrl(
-                          Uri.parse('https://x.com/iamhemantindia'),
-                          mode: LaunchMode.externalApplication,
-                        );
-                      }),
+                      tooltip: 'Contact will be available in a future update.',
+                      onTap: null),
                   // Short label 'Linkedin' opens Linkedin profile
                   _InfoPill(
                       icon: FontAwesome.linkedin_brand,
@@ -253,7 +225,7 @@ class About extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Text(
-            l10n.aboutTipQuote,
+            'Have feedback or ideas? Contact will be available in a future update.',
             textAlign: TextAlign.center,
             style: const TextStyle(
                 color: kSecondaryTextColor, fontSize: 14, fontFamily: 'Gilroy'),
@@ -263,61 +235,45 @@ class About extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             gradient: kButtonGradient,
-            // slightly larger radius for a more prominent pill
-            borderRadius: BorderRadius.circular(34.0),
+            borderRadius: BorderRadius.circular(30),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFFDE6262).withValues(alpha: 0.5),
-                blurRadius: 25,
+                color: kSageColor.withValues(alpha: 0.20),
+                blurRadius: 22,
                 offset: const Offset(0, 8),
               ),
             ],
           ),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              // increase the ink response radius to match the larger pill
-              borderRadius: BorderRadius.circular(32.0),
-              onTap: () {
-                launchUrl(
-                  Uri.parse("https://hemantkarya.github.io/BloomeeTunes/"),
-                  mode: LaunchMode.externalApplication,
-                );
-              },
-              child: Container(
-                // increased padding for a larger touch target
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 44, vertical: 16),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(32.0),
-                  border:
-                      Border.all(color: Colors.white.withValues(alpha: 0.15)),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.favorite,
-                        color: kPrimaryTextColor, size: 20),
-                    const SizedBox(width: 10),
-                    Text(
-                      l10n.aboutTipButton,
-                      style: const TextStyle(
-                        color: kPrimaryTextColor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'Gilroy',
-                      ),
-                    ),
-                  ],
-                ),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 44, vertical: 15),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              border: Border.all(
+                color: kPrimaryTextColor.withValues(alpha: 0.12),
               ),
+            ),
+            child: const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.mail_outline_rounded,
+                    color: kBackgroundColor, size: 20),
+                SizedBox(width: 10),
+                Text(
+                  'Contact',
+                  style: TextStyle(
+                    color: kBackgroundColor,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: 'Gilroy',
+                  ),
+                ),
+              ],
             ),
           ),
         ),
         const SizedBox(height: 20),
         Text(
-          l10n.aboutTipDesc,
+          'No public contact channel is enabled yet.',
           textAlign: TextAlign.center,
           style: const TextStyle(
               color: kSecondaryTextColor, fontSize: 14, fontFamily: 'Gilroy'),
@@ -333,26 +289,21 @@ class About extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            InkWell(
-              borderRadius: BorderRadius.circular(8),
-              onTap: () {
-                launchUrl(
-                    Uri.parse("https://hemantkarya.github.io/BloomeeTunes/"),
-                    mode: LaunchMode.externalApplication);
-              },
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(MingCute.github_fill,
-                      color: kSecondaryTextColor, size: 16),
-                  const SizedBox(width: 8),
-                  Text(l10n.aboutGitHub,
-                      style: const TextStyle(
-                          color: kSecondaryTextColor,
-                          fontSize: 12,
-                          fontFamily: 'Gilroy')),
-                ],
-              ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(MingCute.github_fill,
+                    color: kSecondaryTextColor, size: 16),
+                const SizedBox(width: 8),
+                Text(
+                  'Music-hub',
+                  style: const TextStyle(
+                    color: kSecondaryTextColor,
+                    fontSize: 12,
+                    fontFamily: 'Gilroy',
+                  ),
+                ),
+              ],
             ),
             const SizedBox(width: 18),
             FutureBuilder<PackageInfo>(
