@@ -22,7 +22,7 @@ class NotificationCubit extends Cubit<NotificationState> {
           _notificationDao.putNotification(
             title: "Update Available",
             body:
-                "New Version of Bloomee🌸 is now available!! Version: ${value["newVer"]} + ${value["newBuild"]}",
+                "New version of Music-hub is now available. Version: ${value["newVer"]} + ${value["newBuild"]}",
             type: "app_update",
             unique: true,
           );
