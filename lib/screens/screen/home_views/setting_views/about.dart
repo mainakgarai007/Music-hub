@@ -81,7 +81,7 @@ class About extends StatelessWidget {
                     const Spacer(),
                     _buildInfoCard(context, l10n),
                     const SizedBox(height: 50),
-                    _buildSupportSection(l10n),
+                    _buildSupportSection(context),
                     const Spacer(),
                     // Footer moved to bottom of screen
                     const SizedBox(height: 12),
@@ -222,7 +222,7 @@ class About extends StatelessWidget {
     );
   }
 
-  Widget _buildSupportSection(AppLocalizations l10n) {
+  Widget _buildSupportSection(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -258,12 +258,15 @@ class About extends StatelessWidget {
                 color: kPrimaryTextColor.withValues(alpha: 0.12),
               ),
             ),
-            child: const Row(
+            child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.mail_outline_rounded,
-                    color: Theme.of(context).colorScheme.onPrimary, size: 20),
-                SizedBox(width: 10),
+                Icon(
+                  Icons.mail_outline_rounded,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  size: 20,
+                ),
+                const SizedBox(width: 10),
                 Text(
                   'Contact',
                   style: TextStyle(
