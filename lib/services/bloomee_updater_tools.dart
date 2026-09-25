@@ -129,8 +129,8 @@ Future<Map<String, dynamic>> getAppUpdates() async {
   try {
     final readChangelogs = await SettingsDAO(DBProvider.db)
         .getSettingStr(SettingKeys.readChangelogs);
-    final currVer = "v\${updates['currVer']}";
-    final newVer = "v\${updates['newVer']}";
+    final currVer = "v${updates['currVer']}";
+    final newVer = "v${updates['newVer']}";
     if (currVer == newVer &&
         (readChangelogs == null || readChangelogs != currVer)) {
       updates['changelogs'] = await fetchChangelog();
