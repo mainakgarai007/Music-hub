@@ -78,7 +78,7 @@ class _ImportMediaFromPlatformsViewState
                   _ImportFromBtn(
                     btnName: AppLocalizations.of(context)!.importBloomeeFiles,
                     btnIcon: MingCute.file_import_fill,
-                    onClickFunc: () => _importBloomeeFile(context),
+                    onClickFunc: () => _importMusicHubFile(context),
                   ),
                   const SizedBox(height: 10),
                   _ImportFromBtn(
@@ -131,77 +131,20 @@ class _ImportMediaFromPlatformsViewState
 
   // ─── Import Bloomee JSON/BLM files ────────────────────────────────────────
 
-  void _importBloomeeFile(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: Default_Theme.themeColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        titlePadding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
-        contentPadding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
-        title: Text(
-          AppLocalizations.of(context)!.importNoteTitle,
-          style: Default_Theme.primaryTextStyle.merge(
-            const TextStyle(
-              color: Default_Theme.primaryColor1,
-              fontSize: 18,
-            ),
-          ),
-        ),
-        content: Text(
-          AppLocalizations.of(context)!.importNoteMessage,
-          style: TextStyle(
-            color: Default_Theme.primaryColor2.withValues(alpha: 0.9),
-            fontSize: 15,
-            height: 1.5,
-          ),
-        ),
-        actionsPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            style: TextButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            ),
-            child: Text(
-              AppLocalizations.of(context)!.buttonCancel,
-              style: TextStyle(
-                color: Default_Theme.primaryColor2,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-          FilledButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              FilePicker.platform.pickFiles(
-                allowMultiple: false,
-                type: FileType.any,
-              ).then((value) {
-                if (value != null && value.files.isNotEmpty && value.files[0].path != null) {
-                  final path = value.files[0].path!;
-                  if (context.mounted) {
-                    ImportExportService.handleImportOrRestore(context, path);
-                  }
-                }
-              });
-            },
-            style: FilledButton.styleFrom(
-              backgroundColor: Default_Theme.accentColor2,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
-              elevation: 0,
-            ),
-            child: Text(
-              AppLocalizations.of(context)!.buttonOk,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-        ],
-      ),
+  Future<void> _importMusicHubFile(BuildContext context) async {
+    // No legacy-brand warning dialog: the importer validates the selected file
+    // and supports Music-hub exports plus compatible JSON/backup formats.
+    final result = await FilePicker.platform.pickFiles(
+      allowMultiple: false,
+      type: FileType.any,
     );
+    if (result == null || result.files.isEmpty) return;
+
+    final path = result.files.first.path;
+    if (path == null || path.isEmpty) return;
+
+    if (!context.mounted) return;
+    await ImportExportService.handleImportOrRestore(context, path);
   }
 
   // ─── Import M3U playlist ──────────────────────────────────────────────────
