@@ -39,8 +39,6 @@ class DiscordService {
           DiscordPresence(
               details: track.title,
               state: isPlaying ? "Playing・$artistStr" : "Paused・$artistStr",
-              largeImageKey: "bloomeetunes_logo",
-              largeImageText: "BloomeeTunes",
               startTimeStamp: _startTimeStamp),
         );
       } catch (e) {
