@@ -1525,7 +1525,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get importNoPluginsLoaded => '未加载内容导入插件。\n请安装导入插件以从外部服务导入歌单。';
 
   @override
-  String get importBloomeeFiles => '导入 Bloomee 文件';
+  String get importBloomeeFiles => '导入 Music-hub 文件';
 
   @override
   String get importM3UFiles => '导入 M3U 歌单';
