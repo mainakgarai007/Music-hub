@@ -566,7 +566,7 @@
 
   "importSongsTitle": "Importar canciones",
   "importNoPluginsLoaded": "No hay plugins importadores cargados.\nInstala uno para importar desde servicios externos.",
-  "importBloomeeFiles": "Importar archivos Bloomee",
+  "importBloomeeFiles": "Importar archivos de Music-hub",
   "importM3UFiles": "Importar lista M3U",
   "importM3UNameDialogTitle": "Nombre de la lista",
   "importM3UNameHint": "Ponle un nombre a esta lista",
