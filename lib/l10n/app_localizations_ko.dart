@@ -1532,7 +1532,7 @@ class AppLocalizationsKo extends AppLocalizations {
       '가져오기 플러그인이 없습니다. 외부 플레이리스트를 가져오려면 플러그인을 설치하세요.';
 
   @override
-  String get importBloomeeFiles => 'Bloomee 파일 가져오기';
+  String get importBloomeeFiles => 'Music-hub 파일 가져오기';
 
   @override
   String get importM3UFiles => 'M3U 플레이리스트 가져오기';
@@ -1551,7 +1551,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get importNoteMessage =>
-      'Bloomee에서 생성한 파일만 정상적으로 가져올 수 있습니다. 계속하시겠습니까?';
+      'Music-hub 백업 또는 재생목록 내보내기 파일을 선택하세요. 호환되는 JSON 파일은 다른 출처에서도 가져올 수 있습니다.';
 
   @override
   String get importTitle => '가져오기';
